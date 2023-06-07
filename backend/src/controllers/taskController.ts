@@ -22,6 +22,10 @@ export const createTask = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+
+// Update a task
+
 export const updateTask = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -39,30 +43,13 @@ export const updateTask = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Server error" });
   }
 };
-// Update a task
-// export const updateTask = async (req: Request, res: Response) => {
-//   try {
-//     const { id } = req.params;
-//     const { title, description } = req.body;
-//     const updatedTask = await Task.findByIdAndUpdate(
-//       id,
-//       { title, description },
-//       { new: true }
-//     );
-//     if (!updatedTask) {
-//       res.status(404).json({ error: "Task not found" });
-//     }
-//     res.json(updatedTask);
-//   } catch (error) {
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
+
 
 // Delete a task
 export const deleteTask = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const deletedTask = await Task.findByIdAndDelete(id);
+    const deletedTask = await Task.findByIdAndDelete(_id);
     if (!deletedTask) {
       res.status(404).json({ error: "Task not found" });
     }

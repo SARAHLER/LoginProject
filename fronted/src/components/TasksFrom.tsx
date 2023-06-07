@@ -44,14 +44,15 @@ const Tasks: React.FC = () => {
   const handleDeleteTask = (taskId: string) => {
     dispatch<any>(deleteTask(taskId));
     setEditingTaskId(null);
-    setEditedTask({
+    setEditedTask((prevState) => ({
+      ...prevState,
       id: '',
       _id: '',
       title: '',
       description: '',
-    });
+    }));
   };
-
+  
   const handleAddTask = () => {
     setIsAddingTask(true);
   };

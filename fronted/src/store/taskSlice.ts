@@ -46,12 +46,18 @@ export const updateTask = createAsyncThunk(
 );
 
 export const deleteTask = createAsyncThunk(
-  "tasks/deleteTask",
+  "task/deleteTask",
   async (taskId: string) => {
-    await axios.delete(`http://localhost:5000/api/task/deleteTask/${taskId}`);
-    return taskId; // Return the taskId as the payload
+    try {
+      await axios.delete(`http://localhost:5000/api/task/deleteTask/${taskId}`);
+      return taskId; // Return the taskId as the payload
+    } catch (error) {
+      throw new Error("Failed to delete task.");
+    }
   }
 );
+
+
 
 const taskSlice = createSlice({
   name: "tasks",

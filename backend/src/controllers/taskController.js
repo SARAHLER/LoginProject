@@ -38,6 +38,7 @@ const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.createTask = createTask;
+// Update a task
 const updateTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -54,24 +55,6 @@ const updateTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.updateTask = updateTask;
-// Update a task
-// export const updateTask = async (req: Request, res: Response) => {
-//   try {
-//     const { id } = req.params;
-//     const { title, description } = req.body;
-//     const updatedTask = await Task.findByIdAndUpdate(
-//       id,
-//       { title, description },
-//       { new: true }
-//     );
-//     if (!updatedTask) {
-//       res.status(404).json({ error: "Task not found" });
-//     }
-//     res.json(updatedTask);
-//   } catch (error) {
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
 // Delete a task
 const deleteTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
