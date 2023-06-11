@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route ,Navigate } from 'react-router-dom';
+import { Routes, Route  } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import theme from './them';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -11,6 +11,8 @@ import { useSelector } from 'react-redux';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Tasks from './components/TasksFrom'
+
+
 const App: React.FC = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
@@ -28,13 +30,12 @@ const App: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <Tasks/>
         <Routes>
-          {/* <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/loginForm" element={<LoginForm />} />
           <Route path="/registerForm" element={<RegisterForm />} />
-          <Route path="/banner" element={<Banner />} /> */}
-          {/* <Route path="/" element={isAuthenticated ? <Navigate to="/banner" /> : <LoginPage />} /> */}
+          <Route path="/banner" element={<Banner />} /> 
+          <Route path="/tasks" element={<Tasks />} /> 
 
 
         </Routes>

@@ -28,7 +28,6 @@ const RegisterForm: React.FC = () => {
     try {
       const resultAction = await dispatch(register(formData) as any);
       const token = resultAction.payload;
-      // Handle successful registration
     } catch (error) {
       // Handle registration error
     }

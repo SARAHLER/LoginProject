@@ -58,7 +58,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!isMatch) {
             return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
         }
-        const payload = { userId: user.id }; // Add type annotation to payload
+        const payload = { userId: user.id };
         const token = jsonwebtoken_1.default.sign(payload, config_1.default.jwtSecret, { expiresIn: '1h' });
         res.json({ token });
     }

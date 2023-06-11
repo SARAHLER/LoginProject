@@ -17,7 +17,7 @@ const connect = async () => {
       useCreateIndex: true,
       useFindAndModify: false,
       bufferCommands: false,
-      sslValidate: false, // Disable SSL certificate verification
+      sslValidate: false, 
 
     };
     await mongoose.connect(config.mongoURI, );
@@ -26,10 +26,8 @@ const connect = async () => {
       return mongoose.connect(config.mongoURI,mongooseOptions );
 
     };
-    // Listen for the 'open' event to make sure the initial connection is complete
     mongoose.connection.once('open', () => {
       console.log('MongoDB connection is ready');
-      // Create indexes
       User.createIndexes();
     }); 
 

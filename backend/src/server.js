@@ -28,17 +28,15 @@ const connect = () => __awaiter(void 0, void 0, void 0, function* () {
             useCreateIndex: true,
             useFindAndModify: false,
             bufferCommands: false,
-            sslValidate: false, // Disable SSL certificate verification
+            sslValidate: false,
         };
         yield mongoose_1.default.connect(config_1.default.mongoURI);
         console.log('Connected to MongoDB');
         const connect = () => {
             return mongoose_1.default.connect(config_1.default.mongoURI, mongooseOptions);
         };
-        // Listen for the 'open' event to make sure the initial connection is complete
         mongoose_1.default.connection.once('open', () => {
             console.log('MongoDB connection is ready');
-            // Create indexes
             User_1.User.createIndexes();
         });
     }

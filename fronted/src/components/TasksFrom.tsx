@@ -22,7 +22,7 @@ const Tasks: React.FC = () => {
   const [isAddingTask, setIsAddingTask] = useState(false);
 
   useEffect(() => {
-    dispatch<any>(getallTasks());
+    dispatch <any>(getallTasks());
   }, [dispatch]);
 
   const handleEditTask = (task: Task) => {
@@ -31,7 +31,7 @@ const Tasks: React.FC = () => {
   };
 
   const handleUpdateTask = () => {
-    dispatch<any>(updateTask(editedTask));
+    dispatch <any>(updateTask(editedTask));
     setEditingTaskId(null);
     setEditedTask({
       id: '',
@@ -42,23 +42,21 @@ const Tasks: React.FC = () => {
   };
 
   const handleDeleteTask = (taskId: string) => {
-    dispatch<any>(deleteTask(taskId));
-    setEditingTaskId(null);
-    setEditedTask((prevState) => ({
-      ...prevState,
-      id: '',
-      _id: '',
-      title: '',
-      description: '',
-    }));
+    dispatch<any>(deleteTask(taskId)).then(() => {
+          dispatch<any>(getallTasks()); 
+    }).catch((error: any) => { 
+      console.log("Failed to delete task:", error);
+    });
   };
   
+  
+
   const handleAddTask = () => {
     setIsAddingTask(true);
   };
 
   const handleSaveTask = () => {
-    dispatch<any>(createTask(newTask));
+    dispatch <any>(createTask(newTask));
     setIsAddingTask(false);
     setNewTask({
       id: '',
@@ -119,7 +117,7 @@ const Tasks: React.FC = () => {
                       <h3>{task.title}</h3>
                       <p>{task.description}</p>
                       <button onClick={() => handleEditTask(task)}>Edit</button>
-                      <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+                      <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
                     </div>
                   )}
                 </div>

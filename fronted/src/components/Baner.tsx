@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
-    // <h1>sa</h1>
     <Box>
    
           <AppBar

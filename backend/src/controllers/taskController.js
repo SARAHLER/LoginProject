@@ -59,14 +59,16 @@ exports.updateTask = updateTask;
 const deleteTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
+        console.log("id", id);
         const deletedTask = yield Task_1.default.findByIdAndDelete(id);
         if (!deletedTask) {
-            res.status(404).json({ error: "Task not found" });
+            return res.status(404).json({ error: "Task not found" });
         }
-        res.json(deletedTask);
+        console.log("deletedTask", deletedTask);
+        return res.json(deletedTask);
     }
     catch (error) {
-        res.status(500).json({ error: "Server error" });
+        return res.status(500).json({ error: "Server error" });
     }
 });
 exports.deleteTask = deleteTask;

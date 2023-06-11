@@ -60,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
     }
 
-    const payload: JwtPayload = { userId: user.id }; // Add type annotation to payload
+    const payload: JwtPayload = { userId: user.id }; 
     const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '1h' });
 
     res.json({ token });

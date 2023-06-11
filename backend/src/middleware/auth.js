@@ -12,7 +12,7 @@ const authMiddleware = (req, res, next) => {
     }
     try {
         const decoded = jsonwebtoken_1.default.verify(token, config_1.default.jwtSecret);
-        req.user = { userId: decoded.userId }; // Set the user object with the decoded userId
+        req.user = { userId: decoded.userId };
         next();
     }
     catch (err) {

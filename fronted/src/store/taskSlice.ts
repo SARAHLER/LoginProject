@@ -21,9 +21,11 @@ const initialState: TaskState = {
 };
 
 export const getallTasks = createAsyncThunk("tasks/getallTasks", async () => {
-  const response = await axios.get("http://localhost:5000/api/task/getallTasks");
+  const timestamp = Date.now(); // Generate a unique timestamp
+  const response = await axios.get(`http://localhost:5000/api/task/getallTasks?timestamp=${timestamp}`);
   return response.data;
 });
+
 
 export const createTask = createAsyncThunk(
   "tasks/createTask",
@@ -46,16 +48,17 @@ export const updateTask = createAsyncThunk(
 );
 
 export const deleteTask = createAsyncThunk(
-  "task/deleteTask",
+  'task/deleteTask',
   async (taskId: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/task/deleteTask/${taskId}`);
-      return taskId; // Return the taskId as the payload
+      const response = await axios.delete(`http://localhost:5000/api/task/deleteTask/${taskId}`);
+      return response.data;
     } catch (error) {
-      throw new Error("Failed to delete task.");
+      throw new Error((error as Error).message);
     }
   }
 );
+
 
 
 
@@ -90,7 +93,12 @@ const taskSlice = createSlice({
       .addCase(deleteTask.fulfilled, (state, action) => {
         const deletedTaskId = action.payload;
         state.tasks = state.tasks.filter((task) => task._id !== deletedTaskId);
+        state.isLoading = false;
+        state.error = null;
       });
+      
+      
+      
   },
 });
 
